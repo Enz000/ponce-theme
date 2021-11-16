@@ -1,5 +1,27 @@
-<!-- <div class="hero_container">
+
+<section class="text-gray-600 body-font relative z-20 h-90v">
+    <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/Sans-titre-1.jpg?v=1636731418" class="lg:object-cover hidden z-10  w-full h-full absolute bottom-0 sm:block" alt="">
     
+    <div class="container absolute z-30 m-auto h-full flex lg:justify-center px-5 py-24 md:flex-row flex-col items-center justify-center"> 
+      <div class="lg:w-1/2   sm:w-full">
+        {% if section.settings.image_product !=blank %}
+        <a href="{{ section.settings.product_link }}"><img class="object-contain lg:w-3/4 m-auto md:w-full "  alt="hero" src="{{ section.settings.image_product | img_url: 'large' }}"></a>
+        {% else %}
+        {% capture current %}{% cycle 1,2 %}{% endcapture %}
+        {{ "product-" | append: current | placeholder_svg_tag : "product-1" }}
+    {% endif %}
+      </div>
+      <div class="lg:w-1/2  flex flex-col  mb-16 md:mb-0 sm:mb-2  text-center">
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-bold text-custom-grayBackground">{{ section.settings.title }}
+        </h1>
+        <p class="mb-8 leading-relaxed">{{ section.settings.description }}</p>
+        <div class="flex w-full justify-center">
+
+         <a href="{{ section.settings.button_link }}"><button class="relative bg-custom-pink text-center text-custom-whitetext font-semibold font-heading rounded-md  lg:text-base py-5 px-8  uppercase hover:bg-custom-grayBackground transition duration-200 sm: text-xs py-3 px-9  "><img class="absolute -top-5 -left-5 w-12 flower-anim" src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" alt="flower">VOIR LA COLLECTION</button></a>
+          
+        </div>
+      </div>
+    </div>
     <div class="test">
         <span>FLEUR&nbsp; </span>
         <span>FLEUR&nbsp; </span>
@@ -8,63 +30,6 @@
         <span>FLEUR&nbsp; </span>
         <span>FLEUR&nbsp; </span>
     </div>
-        {% if section.settings.image !=blank %}
-    <img src="{{ section.settings.image | img_url :'master' }}" alt="banner" class="hero_background_image">
-    {% else %}
-        {% capture current %}{% cycle 1,2 %}{% endcapture %}
-        {{ "lifestyle-" | append: current | placeholder_svg_tag : "opacity-20" }}
-    {% endif %}
-    
- <div class="hero_container_info">
-    <div class="hero_left_content">
-        <div class="hero_left_image">
-        {% if section.settings.image_product !=blank %}
-    <img src="{{ section.settings.image_product | img_url: '500x500' }}" alt="image-produit">
-    {% else %}
-        {% capture current %}{% cycle 1,2 %}{% endcapture %}
-        {{ "product-" | append: current | placeholder_svg_tag : "product-1" }}
-    {% endif %}
-</div>
-    </div>
-    <div class="hero_right_content">
-        <div class="hero_content__right">
-            <div class="hero_right_info">
-          <h2>{{ section.settings.title }}</h2>
-          {{ section.settings.description }}
-          <a href="{{ section.settings.button_link }}" class=" bg-custom-pink hover:bg-custom-grayBackground transition duration-200 rounded"><button><img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" alt="flower">{{ section.settings.button_label | upcase }}</button></a>
-         
-        </div>
-        </div>
-    </div>
-    
-</div>
-
-</div> -->
-<section class="text-gray-600 body-font h-90v">
-    
-    <div class="container m-auto h-full flex px-5 py-24 md:flex-row flex-col items-center">
-      
-      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-        {% if section.settings.image_product !=blank %}
-        <a href="{{ section.settings.product_link }}"><img class="object-cover object-center rounded" alt="hero" src="{{ section.settings.image_product | img_url: '500x500' }}"></a>
-        {% else %}
-        {% capture current %}{% cycle 1,2 %}{% endcapture %}
-        {{ "product-" | append: current | placeholder_svg_tag : "product-1" }}
-    {% endif %}
-      </div>
-      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Before they sold out
-          <br class="hidden lg:inline-block">readymade gluten
-        </h1>
-        <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
-        <div class="flex w-full justify-center">
-
-          <button class=" relative bg-custom-pink  text-center text-custom-whitetext font-semibold font-heading py-5 px-8 rounded-md uppercase hover:bg-custom-grayBackground transition duration-200"><img class="absolute -top-5 -left-5 w-12 flower-anim" src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" alt="flower">VOIR LA COLLECTION</button>
-          
-        </div>
-      </div>
-    </div>
-    <!-- <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/Sans-titre-1.jpg?v=1636731418" class="w-full h-full object-cover absolute " alt=""> -->
   </section>
 {% schema %}
 {
@@ -74,7 +39,7 @@
         {
             "type": "image_picker",
             "id": "image",
-            "label": "Heading Background Title"
+            "label": "Image de fond"
         },
         {
             "type": "url",
@@ -90,13 +55,13 @@
             "type": "text",
             "id": "title",
             "default": "Example Heading",
-            "label": "Heading Title"
+            "label": "Titre du hero"
         },
         {
-            "type": "richtext",
+            "type": "text",
             "id": "description",
-            
-            "label": "Heading Description"
+            "default": "texte mais tu n'es pas obliger d'en mettre",
+            "label": "Petit texte si tu souhaites en mettre un"
         },
         {
             "type": "text",
