@@ -1,0 +1,58 @@
+<!-- {% paginate collection.products by 4 %}
+  <h1>{{ collection.title }}</h1>
+  {% for product in collection.products %}
+    <div>
+      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+      {{ product.price | money }}
+      {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+      <a href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+      </a>
+    </div>
+  {% else %}
+    <p>no matches</p>
+  {% endfor %}
+  {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination }}
+  {% endif %}
+{% endpaginate %} -->
+
+{% paginate collection.products by 10 %}
+<div class="bg-custom-whitetext">
+  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -left-44 w-80 object-contain  " alt="flowers">
+  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -right-44 -bottom-56 object-contain w-80" alt="flowers">
+  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-5xl lg:px-8">
+    <h2 class="sr-only text-lg text-custom-grayBackground">evhrb</h2>
+
+    <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-10">
+      {% for product in collection.products %}
+      <a href="{{ product.url | within: collection }}" class="group">
+        <div class="w-full aspect-w-1 aspect-h-1 bg-custom-whitecard rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+          {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class="w-full h-full object-center object-cover group-hover:opacity-75">
+        </div>
+        <h3 class="mt-4 text-sm text-gray-700">
+          {{ product.title | capitalize }}
+        </h3>
+        <p class="mt-1 text-lg font-medium text-gray-900">
+          {{ product.price | money_without_trailing_zeros }}
+        </p>
+      </a>
+      {% endfor %}
+    
+    
+      <!-- More products... -->
+    </div>
+    
+  </div>
+  <div class="text-center mb-4">
+    {% if paginate.pages > 1 %}
+    <span class="bg-red-300">
+      {{ paginate | default_pagination c }}
+    </span>
+    
+  {% endif %}
+{% endpaginate %}
+  </div>
+ 
+</div>

@@ -1,0 +1,44 @@
+<div class="bg-custom-whitetext h-40v w-full absolute z-50 hidden shadow-md"id="display_menu">
+    <div class="max-w-4xl mx-auto py-4 px-4  sm:px-6 lg:max-w-5xl lg:px-8  h-full">
+      <h2 class="text-2xl font-extrabold tracking-tight text-custom-grayBackground">Nos produits</h2>
+  
+      <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        {% for collection in collections %}
+            
+        <div class="group relative h-full">
+          <div class="w-full  bg-custom-whitecard aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-64 lg:aspect-none">
+            <img src="{{ collection.image | img_url: '2048x'}}" alt="collection" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+          </div>
+          <div class="mt-4">
+            <div >
+              <h3 class="text-lg leading-none	 text-custom-grayBackground">
+                <a href="{{ collection.url }}">
+                  <span aria-hidden="true" class="absolute inset-0 f"></span>
+                  {{ collection.title | capitalize }}
+                </a>
+              </h3>
+              
+            </div>
+            
+          </div>
+        </div>
+        {% endfor %}
+  
+       
+        <!-- More products... -->
+      </div>
+    </div>
+  </div>
+  {% schema %}
+{
+    "name": "Display Menu",
+    "class": "display_menu",
+   
+    "presets": [
+        {
+            "category": "Display Menu",
+            "name":"Display Menu"
+        }
+    ]
+}
+{% endschema %}

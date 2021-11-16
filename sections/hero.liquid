@@ -1,0 +1,89 @@
+<div class="hero_container">
+    
+    <div class="test">
+        <span>FLEUR&nbsp; </span>
+        <span>FLEUR&nbsp; </span>
+        <span>FLEUR&nbsp; </span>
+        <span>FLEUR&nbsp; </span>
+        <span>FLEUR&nbsp; </span>
+        <span>FLEUR&nbsp; </span>
+    </div>
+        {% if section.settings.image !=blank %}
+    <img src="{{ section.settings.image | img_url :'master' }}" alt="banner" class="hero_background_image">
+    {% else %}
+        {% capture current %}{% cycle 1,2 %}{% endcapture %}
+        {{ "lifestyle-" | append: current | placeholder_svg_tag : "opacity-20" }}
+    {% endif %}
+    
+ <div class="hero_container_info">
+    <div class="hero_left_content">
+        <div class="hero_left_image">
+        {% if section.settings.image_product !=blank %}
+    <img src="{{ section.settings.image_product | img_url: '500x500' }}" alt="image-produit">
+    {% else %}
+        {% capture current %}{% cycle 1,2 %}{% endcapture %}
+        {{ "product-" | append: current | placeholder_svg_tag : "product-1" }}
+    {% endif %}
+</div>
+    </div>
+    <div class="hero_right_content">
+        <div class="hero_content__right">
+            <div class="hero_right_info">
+          <h2>{{ section.settings.title }}</h2>
+          {{ section.settings.description }}
+          <a href="{{ section.settings.button_link }}" class=" bg-custom-pink hover:bg-custom-grayBackground transition duration-200 rounded"><button><img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" alt="flower">{{ section.settings.button_label | upcase }}</button></a>
+         
+        </div>
+        </div>
+    </div>
+    
+</div>
+
+</div>
+{% schema %}
+{
+    "name": "Container",
+    "class": "hero-section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Heading Background Title"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_product",
+            "label": "Image Produit"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Example Heading",
+            "label": "Heading Title"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            
+            "label": "Heading Description"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "default": "Button",
+            "label": "Heading Button Label"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Heading Button Link"
+        }
+    ],
+    "presets": [
+        {
+            "category": "CONTAINER",
+            "name":"CONTAINER"
+        }
+    ]
+}
+{% endschema %}

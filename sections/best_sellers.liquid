@@ -1,0 +1,65 @@
+<div class="bg-custom-whitetext relative">
+  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -left-44 w-80 object-contain top-0 " alt="flowers">
+  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -right-44 bottom-0 object-contain w-80" alt="flowers">
+  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 ">
+    <div class=" pb-8 flex justify-center   ">
+      <h2 class="m-auto border-b-2 border-custom-pink">{{ section.settings.title | upcase }}</h2>
+    </div>
+
+
+    <div class="grid grid-cols-2 gap-y-12 sm:grid-cols-2 gap-x-8 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-20">
+      {% for product in collections[section.settings.best_sellers_collection].products limit: product_limit%}
+      <a href="{{ product.url }}" class="group">
+        <div class="w-full aspect-w-1 aspect-h-1 bg-custom-whitecard rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+          <img src="{{ product.featured_media.preview_image | img_url : 'grande'}}" alt="{{ product.title }}" class="w-full h-full object-center object-cover group-hover:opacity-75 transition-all duration-200 ">
+        </div>
+        <h3 class="mt-4 text-base	 text-custom-grayBackground">
+          {{ product.title | capitalize }}
+        </h3>
+        <p class="mt-1 text-lg font-medium text-custom-grayBackground">
+          {{ product.price | money_without_trailing_zeros }}
+        </p>
+      </a>
+      {% endfor %}
+      
+
+      <!-- More products... -->
+    </div>
+  
+  </div>
+  
+</div>
+
+  {% schema %}
+{
+    "name": "best sellers Collection",
+    "class": "best_sellers_section",
+    "settings": [
+        {
+            "type": "collection",
+            "id": "best_sellers_collection",
+            "label": "Collection"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "default":"Nos Best Sellers",
+            "label": "Title"
+        },
+        {
+            "type": "range",
+            "id": "product_count",
+            "min": 2,
+            "max": 8,
+            "label": "Number of products to display",
+            "default": 4
+          }
+    ],
+    "presets": [
+        {
+            "category": "Collection",
+            "name":"Best Sellers Collection"
+        }
+    ]
+}
+{% endschema %}
