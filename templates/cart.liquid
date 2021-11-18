@@ -1,54 +1,9 @@
-<!-- {% if cart.item_count > 0 %}
-  <h1>PANIER</h1>
-  <form action="/cart" method="post" novalidate>
-    <table>
-      <thead>
-        <th colspan="2">Prod</th>
-        <th>Price</th>
-        <th>Qty</th>
-        <th>total</th>
-      </thead>
-      <tbody>
-        {% for item in cart.items %}
-          <tr>
-            <td>
-              <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-              </a>
-            </td>
-            <td>
-              <a href="{{ item.url }}">{{ item.product.title }}</a>
-              {{ item.variant.title }}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-            </td>
-            <td>{{ item.price | money }}</td>
-            <td>
-              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-            </td>
-            <td>
-              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-              {{ item.line_price | money }}
-              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div>
-      
-     
-    </div>
-  </form>
-{% else %}
-  <h2>cart</h2>
-  Cart is empty
-{% endif %} -->
-<!-- component -->
+<!-- 
 {% if cart.item_count > 0 %}
-<div class="flex justify-center my-6  min-h-full">
-  <form action="/cart" method="post" novalidate>
-  <div class="flex flex-col w-full h-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-full">
-    <div class="flex-1">
+<div class="flex justify-center h-90v m-auto">
+  <form action="/cart" method="post" novalidate class="m-auto h-5/6 w-9/12 ">
+  <div class="flex flex-col m-auto p-8 h-5/6 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-full">
+    <div class="w-full flex flex-col h-full">
       <table class="w-full text-sm lg:text-base" cellspacing="0">
        
         <thead>
@@ -106,16 +61,16 @@
       </table>
       <hr class="pb-6 mt-6">
       
-                <div class="flex justify-around items-center">
+                <div class="flex w-full justify-evenly bg-red-500 items-center">
                   <p class="text-custom-grayBackround"><span class="font-bold uppercase text-lg	">TOTAL</span> :  {{ cart.total_price | money }}</p>
                   
-                    <button type="submit" name="update" class="flex justify-center w-full px-10 py-3 mt-6 text-center font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
+                    <button type="submit" name="update" class="bg-custom-pink items-center flex text-center text-custom-whitetext font-semibold font-heading py-5 px-8 rounded-md uppercase hover:opacity-75 transition duration-200">
                       <svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
                       <span class="ml-2 mt-5px">METTRE A JOUR</span>
                     </button>
                   
                   
-                    <button type="submit" name="checkout" class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
+                    <button type="submit" name="checkout" class="bg-custom-pink flex text-center text-custom-whitetext font-semibold font-heading py-5 px-8 rounded-md uppercase hover:opacity-75 transition duration-200">
                       <svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
                       <span class="ml-2 mt-5px">PAYER MAINTENANT</span>
                     </button>
@@ -137,6 +92,126 @@
 
   <div class="my-8">
       <a  href="/"><button class="font-semibold lock bg-custom-grayBackground hover:bg-custom-pink text-center text-custom-whitetext font-heading py-5 px-8 rounded-md uppercase transition duration-200">RETOURNER A L'ACCUEIL</button></a>
+  </div>
+</div>
+
+  
+{% endif %} -->
+{% if cart.item_count > 0 %}
+<form action="/cart" method="post"  class="w-full">
+<section class="py-20 bg-gray-100">
+  
+  <div class="container mx-auto px-4">
+    <div class="p-8 lg:p-20 bg-white">
+      <h2 class="mb-20 text-5xl font-bold font-heading">Votre panier</h2>
+      <div class="flex flex-wrap items-center -mx-4">
+        
+        <div class="w-full xl:w-8/12 mb-8 xl:mb-0 px-4">
+          <div class="hidden lg:flex w-full">
+            <div class="w-full lg:w-3/6">
+              <h4 class="mb-6 font-bold font-heading text-gray-500">Article</h4>
+            </div>
+            <div class="w-full lg:w-1/6">
+              <h4 class="mb-6 font-bold font-heading text-gray-500">Prix unitaire</h4>
+            </div>
+            <div class="w-full lg:w-1/6 text-center">
+              <h4 class="mb-6 font-bold font-heading text-gray-500">Quantité</h4>
+            </div>
+            <div class="w-full lg:w-1/6 text-right">
+              <h4 class="mb-6 font-bold font-heading text-gray-500">Prix total</h4>
+            </div>
+          </div>
+          <div class="mb-12 py-6 border-t border-b border-gray-200">
+            {% for item in cart.items %}
+            <div class="flex flex-wrap items-center -mx-4 mb-6 md:mb-3">
+              <div class="w-full md:w-4/6 lg:w-6/12 px-4 mb-6 md:mb-0">
+                <div class="flex -mx-4 flex-wrap items-center">
+                  <div class="w-full md:w-1/3 px-4 mb-3">
+                    <div class="flex items-center justify-center w-full md:w-24 h-32 bg-gray-100">
+                      <img class="h-full object-contain" src="{{ item | img_url: 'medium' }}" alt="">
+                    </div>
+                  </div>
+                  <div class="w-2/3 px-4">
+                    <h3 class="mb-2 text-xl font-bold font-heading">{{ item.title | escape }}</h3>
+                    <p class="text-gray-500">Taille : {{ item.variant.title }}</p>
+                    <button type="submit" class="text-gray-700  hover:text-custom-pink">
+                      <small><a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Supprimer</a></small>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="hidden lg:block lg:w-2/12 px-4">
+                <p class="text-lg text-custom-pink font-bold font-heading"> {{ item.price | money_without_trailing_zeros }} </p>
+                
+              </div>
+              <div class="w-auto md:w-1/6 lg:w-2/12 px-4">
+                <div class="inline-flex items-center px-4 font-semibold font-heading text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md">
+                  <button class="py-2 hover:text-gray-700" id="input_minus">
+                    <svg width="12" height="2" viewbox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.35"><rect x="12" width="2" height="12" transform="rotate(90 12 0)" fill="currentColor"></rect></g></svg>
+                  </button>
+                  <input  id="quantity" class="w-12 m-0 px-2 py-4 text-center md:text-right border-0 focus:ring-transparent focus:outline-none rounded-md" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+                  <button class="py-2 hover:text-gray-700" id="input_plus">
+                    <svg width="12" height="12" viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.35"><rect x="5" width="2" height="12" fill="currentColor"></rect><rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)" fill="currentColor"></rect></g></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="w-auto md:w-1/6 lg:w-2/12 px-4 text-right">
+                <p class="text-lg text-custom-pink font-bold font-heading">{% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+                  {{ item.line_price | money }}
+                  {% for discount in item.discounts %}{{ discount.title }}{% endfor %}</p>
+              </div>
+            </div>
+           {% endfor %}
+          </div>
+          
+        </div>
+        <div class="w-full xl:w-4/12 px-4">
+          <div class="p-6 md:p-12 bg-custom-pink rounded">
+            <h2 class="mb-6 text-4xl font-bold font-heading text-white">Commande</h2>
+            <div class="flex mb-8 items-center justify-between pb-5 border-b border-blue-100">
+              <span class="text-blue-50">Panier</span>
+              <span class="text-xl font-bold font-heading text-white">{{ cart.total_price | money }}</span>
+            </div>
+            <div class="flex mb-4 items-center justify-between pb-5 ">
+              <span class="text-custom-whitetext ">
+                {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'articles' }} ({{ cart.total_price | money }})
+              </span>
+            </div>
+            
+            <h4 class="mb-2 text-xl font-bold font-heading text-white">Livraison</h4>
+            <div class="flex  mb-2 justify-between items-center">
+              <span class="text-custom-whitetext mb-4">Calculée à l'étape suivante</span>
+              <span class="text-custom-whitetext mb-4">
+                {% for discount_application in cart.cart_level_discount_applications %}
+                 Code promo: {{ discount_application.title }}
+                   -{{ discount_application.total_allocated_amount | money }}
+                  {% endfor %}
+              </span>        
+            </div>
+           
+            <div class="flex mb-10 justify-between items-center">
+              <span class="text-xl font-bold font-heading text-white">Total</span>
+              <span class="text-xl font-bold font-heading text-white">{{ cart.total_price | money }}</span>
+            </div>
+            
+            <button type="submit" name="update" class="block w-full mb-4 py-4 bg-custom-whitecard hover:bg-orange-400 text-center text-custom-grayBackground font-bold font-heading uppercase rounded-md transition duration-200">METTRE A JOUR LE PANIER</button>
+            <button type="submit" name="checkout" class="block w-full py-4 bg-custom-grayBackground hover:bg-orange-400 text-center text-white font-bold font-heading uppercase rounded-md transition duration-200">PAYER MAINTENANT</button>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+  </div>
+
+</section>
+</form>
+{% else %}
+<div class="container m-auto text-center h-70v flex items-center flex-col justify-evenly">
+  <h2 class=" my-8 font-semibold text-custom-grayBackground text-5xl">VOTRE PANIER EST VIDE</h2>
+  <img class="block m-auto w-28 my-8" src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/Nnf6ObwM_400x400_42ce0382-3f00-4ba8-8da2-83963bfb320b.png?v=1636962090" alt="ponce 404">
+
+  <div class="my-8">
+      <a href="/"><button class="font-semibold lock bg-custom-grayBackground hover:bg-custom-pink text-center text-custom-whitetext font-heading py-5 px-8 rounded-md uppercase transition duration-200">RETOURNER A L'ACCUEIL</button></a>
   </div>
 </div>
 
