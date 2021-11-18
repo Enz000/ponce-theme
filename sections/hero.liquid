@@ -2,10 +2,10 @@
 <section class="text-gray-600 body-font relative z-20 h-90v">
     <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/Sans-titre-1.jpg?v=1636731418" class="lg:object-cover hidden z-10  w-full h-full absolute bottom-0 sm:block" alt="">
     
-    <div class="container absolute z-30 m-auto h-full flex lg:justify-center px-5 py-24 md:flex-row flex-col items-center justify-center"> 
+    <div class="container absolute min-w-full z-30 m-auto h-full flex lg:justify-center px-5 py-24 md:flex-row flex-col items-center justify-center"> 
       <div class="lg:w-1/2   sm:w-full">
         {% if section.settings.image_product !=blank %}
-        <a href="{{ section.settings.product_link }}"><img class="object-contain lg:w-3/4 m-auto md:w-full "  alt="hero" src="{{ section.settings.image_product | img_url: 'large' }}"></a>
+        <a href="{{ section.settings.product_link }}"><img class="object-contain lg:w-1/2 m-auto md:w-1/2 "  alt="hero" src="{{ section.settings.image_product | img_url: 'large' }}"></a>
         {% else %}
         {% capture current %}{% cycle 1,2 %}{% endcapture %}
         {{ "product-" | append: current | placeholder_svg_tag : "product-1" }}
