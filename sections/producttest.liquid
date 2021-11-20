@@ -1,0 +1,16 @@
+{% for product_option in product.options_with_values %}
+<div>
+  <span class="block mb-4 font-bold font-heading text-gray-400 uppercase">{{ product_option.name  | capitalize }}</span>
+  <select class="pl-6 pr-10 py-4 font-semibold font-heading text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md" name="id" id="productSelect">
+    {% for variant in product.variants %}
+    {% if variant.available %}
+    {% for value in product_option.values %}           
+    <option  {% if product_option.selected_value == value %}selected{% endif %}>
+      {{ value }}
+    </option>
+  {% endfor %}   
+  {% endif %}
+   {% endfor %}      
+  </select>
+</div>
+{% endfor %}

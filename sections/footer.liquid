@@ -1,37 +1,42 @@
 <footer class="text-custom-whitetext bg-custom-pink body-font">
-  <div class="container px-5 py-16 mx-auto">
-    <div class="flex justify-between w-full  order-first bg-green-600">
-      <div class="lg:w-1/4 md:w-1/2 w-full flex items-center   px-4  bg-blue-600">
+  <div class="xl:h-30v flex">
+    <div class="flex justify-around w-full  items-center  my-auto">
+      <div class="lg:w-1/4 md:w-1/2 w-full flex items-center">
         
         <nav class="cursor-pointer">
-          <ul class="flex justify-evenly ">
+          <ul class="flex justify-between ">
             {% if section.settings.social_1 !=blank %}
-          <li>
-            <a class="text-gray-600 hover:text-gray-800"><img src="{{ section.settings.social_1 | img_url }}" alt="social icon"></a>
+          <li class=" mx-2">
+            <a class=" hover:text-gray-800 "><img class="w-11" src="{{ section.settings.social_1 | img_url }}" alt="social icon"></a>
           </li>
-          <li>
-            <a class="text-gray-600 hover:text-gray-800"><img src="{{ section.settings.social_2 | img_url }}" alt="social icon"></a>
-          </li>
-          <li>
-            <a class="text-gray-600 hover:text-gray-800"><img src="{{ section.settings.social_3 | img_url }}" alt="social icon"></a>
-          </li>
-          <li>
-            <a class="text-gray-600 hover:text-gray-800"><img src="{{ section.settings.social_4 | img_url }}" alt="social icon"></a>
+          <li class=" mx-2">
+            <a class=" hover:text-gray-800"><img class="w-11" src="{{ section.settings.social_2 | img_url }}" alt="social icon"></a>
+          </li class=" mx-2">
+          <li class=" mx-2">
+            <a class=" hover:text-gray-800"><img class="w-11" src="{{ section.settings.social_3 | img_url }}" alt="social icon"></a>
+          </li class=" mx-2">
+          <li class=" mx-2">
+            <a class=" hover:text-gray-800"><img class="w-11" src="{{ section.settings.social_4 | img_url }}" alt="social icon"></a>
           </li>
        
           {% endif %}
         </ul>
         </nav>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 w-full px-4 bg-yellow-400">
-        <h2 class="title-font font-semibold text-custom-whitetext tracking-widest text-sm mb-3">INFORMATIONS</h2>
-        <nav class="list-none mb-10 cursor-pointer text-custom-whitetext">
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 sm:px-2">
+        <h2 class="title-font font-semibold text-custom-whitetext tracking-widest text-sm my-3 sm:text-xs">INFORMATIONS</h2>
+        <nav class="list-none mb-10 cursor-pointer text-custom-whitetext ">
+          <ul >
           {%- for link in linklists.footer.links -%}
-          <li>
-            <a class=" hover:text-gray-800" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title | capitalize }}</a>
-          </li>
+         
+            <li class="my-2">
+              <a class=" hover:text-gray-800" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title | capitalize }}</a>
+            </li>
+            {%- endfor -%}
+          </ul>
+        
           
-          {%- endfor -%}
+         
         </nav>
       </div>
       
@@ -39,7 +44,7 @@
     </div>
   </div>
   <div class="bg-gray-100">
-    <div class="container px-5 justify-center py-1 mx-auto flex items-center sm:flex-row flex-col">
+    <div class=" px-5 justify-center py-1 mx-auto flex items-center sm:flex-row flex-col">
       
       <p class="text-xs text-gray-500 sm:ml-6 sm:mt-0 mt-4">© {{ "now" | date: "%Y" }} {{ shop.name | capitalize }}
         <a href="https://twitter.com/z0enn" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank"> Made with 🌸 by z0enn</a>

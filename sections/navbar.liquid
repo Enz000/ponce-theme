@@ -78,7 +78,7 @@
                                       </svg>
                                   </button> -->
                                   
-                                  <button aria-label="open menu" onclick="openMenu()" class="text-red-600 dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
+                                  <button aria-label="open menu" onclick="openMenu()" class="text-custom-whitecard dark:text-white dark:hover:text-gray-300 md:hidden focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
                                       <svg class="fill-stroke" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                           <path d="M4 6H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                           <path d="M10 12H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -91,8 +91,7 @@
                   </div>
                   <!-- For small screen -->
                   <div id="mobile-menu" class="hidden absolute dark:bg-gray-900 z-30 inset-0 md:hidden bg-custom-grayBackground flex shadow-md flex-col h-50v w-full">
-                      <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-5">
-                          
+                      <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-5">                       
                         <img src="{{ section.settings.logo | img_url }}" alt="">
                           <button onclick="closeMenu()" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-600">
                               <svg class=" fill-stroke text-custom-whitetext" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,9 +102,10 @@
                       </div>
                       <div class="mt-6 p-4">
                           <ul class="flex flex-col space-y-6">
+                            {%- for link in linklists.main-menu.links -%}
                               <li>
-                                  <a href="javascript:void(0)" class="dark:text-white flex items-center justify-between hover:underline text-base text-custom-whitetext focus:outline-none focus:ring-2 focus:ring-gray-800">
-                                      Home
+                                  <a href="{{ link.url }}" class="dark:text-white flex items-center justify-between hover:underline text-base text-custom-whitetext focus:outline-none focus:ring-2 focus:ring-gray-800">
+                                    {{ link.title |  capitalize }}
                                       <div>
                                           <svg class="fill-stroke text-black dark:text-white" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                               <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -113,36 +113,7 @@
                                       </div>
                                   </a>
                               </li>
-                              <li>
-                                  <a href="javascript:void(0)" class="dark:text-white flex items-center justify-between hover:underline text-base text-custom-whitetext focus:outline-none focus:ring-2 focus:ring-gray-800">
-                                      Furniture
-                                      <div>
-                                          <svg class="fill-stroke text-black dark:text-white" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
-                                          </svg>
-                                      </div>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="javascript:void(0)" class="dark:text-white flex items-center justify-between hover:underline text-base text-custom-whitetext focus:outline-none focus:ring-2 focus:ring-gray-800">
-                                      Lookbook
-                                      <div>
-                                          <svg class="fill-stroke text-black dark:text-white" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
-                                          </svg>
-                                      </div>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="javascript:void(0)" class="dark:text-white flex items-center justify-between hover:underline text-base text-custom-whitetext focus:outline-none focus:ring-2 focus:ring-gray-800">
-                                      Support
-                                      <div>
-                                          <svg class="fill-stroke text-black dark:text-white" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
-                                          </svg>
-                                      </div>
-                                  </a>
-                              </li>
+                              {% endfor %}
                           </ul>
                       </div>
                       
