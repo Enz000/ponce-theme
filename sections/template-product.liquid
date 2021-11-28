@@ -21,7 +21,6 @@
                     </div>
                 {% endfor %}
             </div>
-
             <div class="md:hidden">
                 <div class="swiper h-94">
                     <div class="swiper-wrapper">
@@ -33,9 +32,7 @@
                             </div>
                         {% endfor %}
                     </div>
-
                     <div class="swiper-pagination"></div>
-
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                 </div>
@@ -86,6 +83,7 @@
 
                                             <script type="application/json">
                                                 {{ product.variants | json }}
+                                         
                                             </script>
 
                                         {% endfor %}
@@ -106,12 +104,13 @@
                                 <p class="text-gray-700">{{ product.description }}</p>
                             </div>
 
-                       
-                            <div class="my-3 text-center">
-                                <button type="submit" name="add" class="w-3/4 px-6 py-4 bg-custom-grayBackground text-white hover:bg-custom-pink rounded my-2  transition duration-200"
+                           
+
+                            
+                            <div id="addToCart" class="my-3 text-center">
+                                <button type="submit"  name="add" class="w-3/4 px-6 py-4 bg-custom-grayBackground text-white hover:bg-custom-pink rounded my-2  transition duration-200"
                                     {% if selected_variant.available == false %}
                                         disabled 
-                                       
                                     {% endif %}
                                 >
                                     {% if selected_variant.available == false %}
@@ -121,9 +120,90 @@
                                     {% endif %}
                                 </button>
                             </div>
+                            
             {% endform %}
         </div>
     </div>
+    <div class="bg-white">
+        <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">{{ section.settings.title | capitalize }}</h2>
+      
+          <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          
+            <div class="group relative">
+              <div class="w-full min-h-80 bg-custom-whitecard aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                <img src="{{ section.settings.product_1 | img_url: 'grande' }}" alt="produit recemment acheté" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+              </div>
+              <div class="mt-4 flex justify-between">
+                <div>
+                  <h3 class="text-sm font-semibold m-0 text-gray-700">
+                    <a href="{{ section.settings.product_1.url }}">
+                      <span  class="absolute inset-0"></span>
+                      {{ section.settings.product_1.title  }}
+                    </a>
+                  </h3>
+                </div>
+                <p class="text-sm font-medium text-gray-900">{{ section.settings.product_1.price_max | money  }}</p>
+              </div>
+            </div>
+            {% if section.settings.product_2 !=blank %}
+            <div class="group relative">
+                <div class="w-full min-h-80 bg-custom-whitecard aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                  <img src="{{ section.settings.product_2 | img_url: 'grande' }}" alt="produit recemment acheté" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                </div>
+                <div class="mt-4 flex justify-between">
+                  <div>
+                    <h3 class="text-sm font-semibold m-0 text-gray-700">
+                      <a href="{{ section.settings.product_2.url }}">
+                        <span  class="absolute inset-0"></span>
+                        {{ section.settings.product_2.title  }}
+                      </a>
+                    </h3>
+                  </div>
+                  <p class="text-sm font-medium text-gray-900">{{ section.settings.product_2.price_max | money  }}</p>
+                </div>
+              </div>
+            {% endif %}
+            {% if section.settings.product_3 !=blank %}
+            <div class="group relative">
+                <div class="w-full min-h-80 bg-custom-whitecard aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                  <img src="{{ section.settings.product_3 | img_url: 'grande' }}" alt="produit recemment acheté" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                </div>
+                <div class="mt-4 flex justify-between">
+                  <div>
+                    <h3 class="text-sm font-semibold m-0 text-gray-700">
+                      <a href="{{ section.settings.product_3.url }}">
+                        <span  class="absolute inset-0"></span>
+                        {{ section.settings.product_3.title  }}
+                      </a>
+                    </h3>
+                  </div>
+                  <p class="text-sm font-medium text-gray-900">{{ section.settings.product_3.price_max | money  }}</p>
+                </div>
+              </div>
+            {% endif %}
+            {% if section.settings.product_4 !=blank %}
+            <div class="group relative">
+                <div class="w-full min-h-80 bg-custom-whitecard aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                  <img src="{{ section.settings.product_4 | img_url: 'grande' }}" alt="produit recemment acheté" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                </div>
+                <div class="mt-4 flex justify-between">
+                  <div>
+                    <h3 class="text-sm font-semibold m-0 text-gray-700">
+                      <a href="{{ section.settings.product_4.url }}">
+                        <span  class="absolute inset-0"></span>
+                        {{ section.settings.product_4.title  }}
+                      </a>
+                    </h3>
+                  </div>
+                  <p class="text-sm font-medium text-gray-900">{{ section.settings.product_4.price_max | money  }}</p>
+                </div>
+              </div>
+            {% endif %}
+           
+          </div>
+        </div>
+      </div>
 </div>
 
 <script>
@@ -148,10 +228,12 @@
             this.getSelectedOptions();
             this.getSelectedVariant();
             if(this.currentVariant){
-                this.updateURL()
-                this.updateFormID()
-                this.updateImageVariant()
-                this.updatePriceVariant()
+                this.updateURL();
+                this.updateFormID();
+                this.updateImageVariant();
+                this.updatePriceVariant();
+                this.updateStock(); 
+             
             }
         }
         getSelectedOptions() {
@@ -160,8 +242,10 @@
         }
         getVariantJSON (){
             this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+            
             return this.variantData;
         }
+        
         getSelectedVariant() {
             this.currentVariant = this.getVariantJSON().find(
                 (variant) => {
@@ -170,7 +254,6 @@
                            return this.options[index] === option;
                         }
                     ).includes(false);
-
                     if(findings) return variant;
                 }
             );
@@ -202,6 +285,52 @@
                 if(oldPrice && newPrice) oldPrice.innerHTML = newPrice.innerHTML;
             })
         }
+        updateStock() {
+           
+         $('#addToCart').load(location.href + " #addToCart");
+        //  Oui, j'ai utilisé du jquery... si tu passes par là n'hésite pas à m'expliquer comment faire la même chose en vanilla.
+           
+        }
     }
   customElements.define('variant-selector', VariantSelector)
 </script>
+{% schema %}
+{
+    "name": "Produit section",
+    "class": "product_section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "default":"Découvrez nos autres produits",
+            "label": "Titre de la section"
+        },
+        {
+            "type": "product",
+            "id": "product_1",
+            "label": "Produit 1"
+        },
+        {
+            "type": "product",
+            "id": "product_2",
+            "label": "Produit 2"
+        },
+        {
+            "type": "product",
+            "id": "product_3",
+            "label": "Produit 3"
+        },
+        {
+            "type": "product",
+            "id": "product_4",
+            "label": "Produit 4"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Hero",
+            "name":"Produit Section"
+        }
+    ]
+}
+{% endschema %}
