@@ -16,6 +16,10 @@ module.exports = {
           whitecard: "#F6F6F6",
           grayBackground: "#202020",
         },
+        height: {
+          "94" : '22rem',
+         
+        },
       },
       height: {
         "10v": "10vh",
@@ -28,7 +32,8 @@ module.exports = {
         "80v": "80vh",
         "90v": "90vh",
         "100v": "100vh",
-      },
+      }
+    
     },
     fontFamily: {
       poppins: ["'Poppins', sans-serif"],
