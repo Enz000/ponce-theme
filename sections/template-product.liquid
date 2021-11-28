@@ -11,12 +11,12 @@
     .product--information { height: fit-content; }
 </style>
 
-<div class="max-w-6xl mx-auto my-12">
+<div class="max-w-6xl mx-auto my-12 ">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div class="product--medias">
             <div class="hidden md:block">
                 {% for media in product.media %}
-                    <div class="h-100 overflow-hidden p-2" id="image_lg" >
+                    <div class="h-100  p-2" id="image_lg" >
                         {% render 'product-media',  media: media %}
                     </div>
                 {% endfor %}
@@ -26,7 +26,7 @@
                     <div class="swiper-wrapper">
                         {% for media in product.media %}
                             <div class="swiper-slide">
-                                <div class="h-80 overflow-hidden p-2" id="image_sm">
+                                <div class="h-80  p-2" id="image_sm">
                                     {% render 'product-media', media: media %}
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="product--information sticky bg-yellow-400 top-5 p-2">
+        <div class="product--information sticky top-10   p-2">
             {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
                 <input type="hidden" name="id" value="{{ selected_variant.id }}">
                         
@@ -108,11 +108,11 @@
 
                             
                             <div id="addToCart" class="my-3 text-center">
-                                <button type="submit"  name="add" class="w-3/4 px-6 py-4 bg-custom-grayBackground text-white hover:bg-custom-pink rounded my-2  transition duration-200"
+                                <button type="submit"  name="add" class=" relative w-3/4 px-6 py-4 bg-custom-grayBackground text-white hover:bg-custom-pink rounded my-2  transition duration-200"
                                     {% if selected_variant.available == false %}
                                         disabled 
                                     {% endif %}
-                                >
+                                > <img class="absolute -top-5 -left-5 w-12 flower-anim" src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" alt="flower">
                                     {% if selected_variant.available == false %}
                                         EPUISÉ
                                     {% else %}
@@ -127,7 +127,7 @@
     <div class="bg-white">
         <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">{{ section.settings.title | capitalize }}</h2>
-      
+       
           <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           
             <div class="group relative">
