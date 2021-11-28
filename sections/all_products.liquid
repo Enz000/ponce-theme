@@ -17,7 +17,7 @@
             {{ product.title | capitalize }}
           </h3>
           <p class="mt-1 text-lg font-medium ">
-            {{ product.price | money_without_trailing_zeros }}
+            {{ product.price_max | money }}
           </p>
         </a>
         {% endfor %}

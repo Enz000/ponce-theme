@@ -1,7 +1,7 @@
 <div class="bg-custom-whitetext relative">
-  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -left-44 w-80 object-contain top-0 " alt="flowers">
+  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute  -left-44 w-80 object-contain top-0 " alt="flowers">
   <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -right-44 bottom-0 object-contain w-80" alt="flowers">
-  <div class="max-w-2xl mx-auto pb-10 pt-16 px-4 sm:py-20 sm:px-6 lg:max-w-7xl lg:px-8  ">
+  <div class="max-w-2xl mx-auto pb-10 pt-16 px-4 relative z-50 sm:py-20 sm:px-6 lg:max-w-7xl lg:px-8  ">
     <div class=" pb-8 flex justify-center   ">
       <h2 class="m-auto border-b-2 border-custom-pink">{{ section.settings.title | upcase }}</h2>
     </div>
@@ -18,7 +18,7 @@
           {{ product.title | capitalize }}
         </h3>
         <p class="mt-1 text-lg font-medium text-custom-grayBackground">
-          {{ product.price | money_without_trailing_zeros }}
+          {{ product.price_max | money }}
         </p>
       </a>
       {% endfor %}
@@ -28,7 +28,7 @@
       <a href="{{ section.settings.all_products_collection.url }}"><button class="bg-custom-pink  text-center text-custom-whitetext font-semibold font-heading py-5 px-8 rounded-md uppercase hover:opacity-75 transition duration-200">{{ section.settings.button_text }}</button></a>
     </div>
   </div>
-  
+
 </div>
 
   {% schema %}
