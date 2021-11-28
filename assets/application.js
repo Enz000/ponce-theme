@@ -2,7 +2,8 @@ const plus = document.getElementById('input_plus')
 const minus = document.getElementById('input_minus')
 const inputQuantity = document.getElementById('quantity')
 
-window.addEventListener("DOMContentLoaded", () => {
+
+document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelectorAll("[id=nav_list]");
   const menu = document.querySelector("#display_menu");
 
@@ -19,9 +20,9 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-
-
+  
 });
+
 
 
 
