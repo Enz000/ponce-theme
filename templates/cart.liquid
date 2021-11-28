@@ -1,102 +1,4 @@
-<!-- 
-{% if cart.item_count > 0 %}
-<div class="flex justify-center h-90v m-auto">
-  <form action="/cart" method="post" novalidate class="m-auto h-5/6 w-9/12 ">
-  <div class="flex flex-col m-auto p-8 h-5/6 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-full">
-    <div class="w-full flex flex-col h-full">
-      <table class="w-full text-sm lg:text-base" cellspacing="0">
-       
-        <thead>
-          <tr class="h-12 uppercase">
-            <th class="hidden md:table-cell"></th>
-            <th class="text-left">PRODUIT</th>
-            <th class="lg:text-right text-left pl-5 lg:pl-0">
-              <span class="lg:hidden" title="Quantity">Quantité</span>
-              <span class="hidden lg:inline">Quantité</span>
-            </th>
-            <th class="hidden text-right md:table-cell">Prix unitaire</th>
-     
-          </tr>
-        </thead>
-     
-        <tbody>
-          {% for item in cart.items %}
-          <tr>
-            <td class="hidden pb-4 md:table-cell">
-              <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" class="w-20 rounded" alt="Thumbnail">
-              </a>
-            </td>
-            <td>
-              <a href="#">
-                <p class="mb-2 md:ml-4">{{ item.product.title }}</p>
-                <p class="mb-2 md:ml-4">Taille : {{ item.variant.title }}</p>
-                <form action="" method="POST">
-                  <button type="submit" class="text-gray-700 md:ml-4 hover:text-custom-pink">
-                    <small><a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Supprimer</a></small>
-                  </button>
-                </form>
-              </a>
-            </td>
-            <td class="justify-center md:justify-end md:flex mt-6">
-              <div class="w-20 h-10">
-                <div class="relative flex flex-row w-full h-8">
-                  <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
-                </div>
-              </div>
-            </td>
-            <td class="hidden text-right md:table-cell">
-              <span class="text-sm lg:text-base font-medium">
-                {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-                {{ item.line_price | money }}
-                {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-              </span>
-            </td>
-            
-          </tr> 
-          
-          {% endfor %}
-        </tbody>
-     
-      </table>
-      <hr class="pb-6 mt-6">
-      
-                <div class="flex w-full justify-evenly bg-red-500 items-center">
-                  <p class="text-custom-grayBackround"><span class="font-bold uppercase text-lg	">TOTAL</span> :  {{ cart.total_price | money }}</p>
-                  
-                    <button type="submit" name="update" class="bg-custom-pink items-center flex text-center text-custom-whitetext font-semibold font-heading py-5 px-8 rounded-md uppercase hover:opacity-75 transition duration-200">
-                      <svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
-                      <span class="ml-2 mt-5px">METTRE A JOUR</span>
-                    </button>
-                  
-                  
-                    <button type="submit" name="checkout" class="bg-custom-pink flex text-center text-custom-whitetext font-semibold font-heading py-5 px-8 rounded-md uppercase hover:opacity-75 transition duration-200">
-                      <svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
-                      <span class="ml-2 mt-5px">PAYER MAINTENANT</span>
-                    </button>
-                  
-                </div>
-                
-              
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-{% else %}
-<div class="container m-auto text-center h-70v flex items-center flex-col justify-evenly">
-  <h2 class=" my-8 font-semibold text-custom-grayBackground text-5xl">VOTRE PANIER EST VIDE</h2>
-  <img class="block m-auto w-28 my-8" src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/Nnf6ObwM_400x400_42ce0382-3f00-4ba8-8da2-83963bfb320b.png?v=1636962090" alt="ponce 404">
 
-  <div class="my-8">
-      <a  href="/"><button class="font-semibold lock bg-custom-grayBackground hover:bg-custom-pink text-center text-custom-whitetext font-heading py-5 px-8 rounded-md uppercase transition duration-200">RETOURNER A L'ACCUEIL</button></a>
-  </div>
-</div>
-
-  
-{% endif %} -->
 {% if cart.item_count > 0 %}
 <form action="/cart" method="post"  class="w-full">
 <section class="py-20 bg-gray-100">
@@ -146,12 +48,12 @@
               </div>
               <div class="w-auto md:w-1/6 lg:w-2/12 px-4">
                 <div class="inline-flex items-center px-4 font-semibold font-heading text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md">
-                  <button class="py-2 hover:text-gray-700" id="input_minus">
-                    <svg width="12" height="2" viewbox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.35"><rect x="12" width="2" height="12" transform="rotate(90 12 0)" fill="currentColor"></rect></g></svg>
+                  <button class=" text-lg font-bold py-2 hover:text-gray-700 minus" >
+                   -
                   </button>
-                  <input  id="quantity" class="w-12 m-0 px-2 py-4 text-center md:text-right border-0 focus:ring-transparent focus:outline-none rounded-md" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-                  <button class="py-2 hover:text-gray-700" id="input_plus">
-                    <svg width="12" height="12" viewbox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.35"><rect x="5" width="2" height="12" fill="currentColor"></rect><rect x="12" y="5" width="2" height="12" transform="rotate(90 12 5)" fill="currentColor"></rect></g></svg>
+                  <input  id="quantity" class=" quantity w-12 m-0 px-2 py-4 text-center md:text-right border-0 focus:ring-transparent focus:outline-none rounded-md" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+                  <button class="py-2 plus text-lg font-bold hover:text-gray-700" id="input_plus">
+                    +
                   </button>
                 </div>
               </div>
@@ -174,7 +76,7 @@
             </div>
             <div class="flex mb-4 items-center justify-between pb-5 ">
               <span class="text-custom-whitetext ">
-                {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'articles' }} ({{ cart.total_price | money }})
+                {{ cart.item_count }} {{ cart.item_count | pluralize: 'article(s)', 'article(s)' }} ({{ cart.total_price | money }})
               </span>
             </div>
             
@@ -217,3 +119,22 @@
 
   
 {% endif %}
+
+<script>
+const plus = document.querySelectorAll('.plus');
+const minus = document.querySelectorAll('.minus');
+plus.forEach(btn  => {
+  btn.addEventListener('click' , (e) => {
+    e.preventDefault();
+   const input = e.target.parentElement.children[1];
+  input.stepUp(+1);
+  })
+})
+minus.forEach(btn  => {
+  btn.addEventListener('click' , (e) => {
+    e.preventDefault();
+   const input = e.target.parentElement.children[1]
+  input.stepUp(-1);
+  })
+})
+</script>
