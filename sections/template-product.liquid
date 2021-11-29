@@ -10,14 +10,16 @@
     .swiper-pagination-bullet-active { background: black !important; }
     .product--information { height: fit-content; }
 </style>
-
 <div class="max-w-6xl mx-auto my-12 ">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div class="product--medias">
             <div class="hidden md:block">
                 {% for media in product.media %}
-                    <div class="h-100  p-2" id="image_lg" >
-                        {% render 'product-media',  media: media %}
+                    <div class="h-100 cursor-pointer   p-2" id="image_lg" >
+                        <a href="{{ media | img_url: 'grande' }}">
+                            {% render 'product-media',  media: media %}
+                        </a>
+                        
                     </div>
                 {% endfor %}
             </div>
@@ -44,7 +46,7 @@
                 <input type="hidden" name="id" value="{{ selected_variant.id }}">
                         
                             <div class="my-3">
-                                <h1 class="text-4xl font-bold  text-custom-grayBackground">{{ product.title | upcase }}</h1>
+                                <h1 class="text-4xl font-bold  text-custom-grayBackground">{{ product.title | capitalize }}</h1>
                             </div>
                         
                             <div class="my-3" id="price-{{ section.id }}">
@@ -52,16 +54,14 @@
                                 <span class="text-lg font-semibold text-custom-pink">{{ selected_variant.price | money }}</span>
 
                                 {% if selected_variant.price < selected_variant.compare_at_price %}
-                                    <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Promo 🌸</span>
+                                    <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Promo</span>
                                 {% endif %}
                             </div>
-                        
                             <div class="my-5">
                                 {% unless product.has_only_default_variant %}
                                     <variant-selector data-url="{{ product.url}}" data-section="{{ section.id }}">
                                         {% for option in product.options_with_values %}
                                             <label class=" uppercase text-custom-grayBackground font-semibold" for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-
                                             <div class="my-2">
                                                 <select 
                                                     name="options[{{ option.name | escape }}]" 
@@ -80,18 +80,13 @@
                                                     {% endfor %}
                                                 </select>
                                             </div>
-
                                             <script type="application/json">
                                                 {{ product.variants | json }}
-                                         
                                             </script>
-
                                         {% endfor %}
                                     </variant-selector>
                                 {% endunless %}
-                            </div>
-
-                
+                            </div>                
                             <div class="my-5">
                                 <label class=" uppercase font-semibold" for="Quantity-{{ section.id }}">Quantité</label>
 
@@ -101,14 +96,10 @@
                             </div>
                     
                             <div class="my-3">
-                                <p class="text-gray-700">{{ product.description }}</p>
+                                <p class="text-custom-grayBackground">{{ product.description }}</p>
                             </div>
-
-                           
-
-                            
                             <div id="addToCart" class="my-3 text-center">
-                                <button type="submit"  name="add" class=" relative w-3/4 px-6 py-4 bg-custom-grayBackground text-white hover:bg-custom-pink rounded my-2  transition duration-200"
+                                <button type="submit"  name="add" class=" relative w-3/4 px-6 py-4 bg-custom-pink text-white hover:bg-custom-grayBackground rounded my-2  transition duration-200"
                                     {% if selected_variant.available == false %}
                                         disabled 
                                     {% endif %}
@@ -116,7 +107,7 @@
                                     {% if selected_variant.available == false %}
                                         EPUISÉ
                                     {% else %}
-                                       AJOUTEZ AU PANIER
+                                       AJOUTER AU PANIER
                                     {% endif %}
                                 </button>
                             </div>
@@ -125,8 +116,8 @@
         </div>
     </div>
     <div class="bg-white">
-        <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">{{ section.settings.title | capitalize }}</h2>
+        <div class="max-w-2xl mx-auto py-16 px-8 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <h2 class="text-2xl font-extrabold tracking-tight inline-block underline_custom text-custom-grayBackground">{{ section.settings.title | capitalize }}</h2>
        
           <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           
@@ -136,14 +127,14 @@
               </div>
               <div class="mt-4 flex justify-between">
                 <div>
-                  <h3 class="text-sm font-semibold m-0 text-gray-700">
+                  <h3 class="text-sm font-semibold m-0 text-custom-grayBackground"> 
                     <a href="{{ section.settings.product_1.url }}">
                       <span  class="absolute inset-0"></span>
                       {{ section.settings.product_1.title  }}
                     </a>
                   </h3>
                 </div>
-                <p class="text-sm font-medium text-gray-900">{{ section.settings.product_1.price_max | money  }}</p>
+                <p class="text-sm font-medium text-custom-pink">{{ section.settings.product_1.price_max | money  }}</p>
               </div>
             </div>
             {% if section.settings.product_2 !=blank %}
@@ -153,14 +144,14 @@
                 </div>
                 <div class="mt-4 flex justify-between">
                   <div>
-                    <h3 class="text-sm font-semibold m-0 text-gray-700">
+                    <h3 class="text-sm font-semibold m-0 text-custom-grayBackground">
                       <a href="{{ section.settings.product_2.url }}">
                         <span  class="absolute inset-0"></span>
                         {{ section.settings.product_2.title  }}
                       </a>
                     </h3>
                   </div>
-                  <p class="text-sm font-medium text-gray-900">{{ section.settings.product_2.price_max | money  }}</p>
+                  <p class="text-sm font-medium text-custom-pink">{{ section.settings.product_2.price_max | money  }}</p>
                 </div>
               </div>
             {% endif %}
@@ -171,14 +162,14 @@
                 </div>
                 <div class="mt-4 flex justify-between">
                   <div>
-                    <h3 class="text-sm font-semibold m-0 text-gray-700">
+                    <h3 class="text-sm font-semibold m-0 text-custom-grayBackground">
                       <a href="{{ section.settings.product_3.url }}">
                         <span  class="absolute inset-0"></span>
                         {{ section.settings.product_3.title  }}
                       </a>
                     </h3>
                   </div>
-                  <p class="text-sm font-medium text-gray-900">{{ section.settings.product_3.price_max | money  }}</p>
+                  <p class="text-sm font-medium text-custom-pink">{{ section.settings.product_3.price_max | money  }}</p>
                 </div>
               </div>
             {% endif %}
@@ -189,14 +180,14 @@
                 </div>
                 <div class="mt-4 flex justify-between">
                   <div>
-                    <h3 class="text-sm font-semibold m-0 text-gray-700">
+                    <h3 class="text-sm font-semibold m-0 text-custom-grayBackground">
                       <a href="{{ section.settings.product_4.url }}">
                         <span  class="absolute inset-0"></span>
                         {{ section.settings.product_4.title  }}
                       </a>
                     </h3>
                   </div>
-                  <p class="text-sm font-medium text-gray-900">{{ section.settings.product_4.price_max | money  }}</p>
+                  <p class="text-sm font-medium text-custom-pink">{{ section.settings.product_4.price_max | money  }}</p>
                 </div>
               </div>
             {% endif %}
