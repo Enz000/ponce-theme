@@ -1,12 +1,7 @@
-
-
-{% paginate collection.products by 10 %}
-<div class="bg-custom-whitetext overflow-hidden">
-  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute hidden -left-44 w-80 object-contain  " alt="flowers">
-  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute hidden -right-44 -bottom-56 object-contain w-80" alt="flowers">
+{% paginate collection.products by 6 %}
+<div class="bg-custom-whitetext overflow-x-hidden">
   <div class="max-w-2xl mx-auto py-16 px-12 sm:py-24 sm:px-6 lg:max-w-5xl lg:px-8">
-    <h2 class=" text-xl mb-4 text-custom-grayBackground">{{ collection.title | capitalize }}</h2>
-
+    <h2 class=" text-2xl mb-8 font-bold .underline_custom  text-custom-grayBackground">{{ collection.title | capitalize }}</h2>
     <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-10"  >
       {% for product in collection.products %}
       <a href="{{ product.url | within: collection }}" class="group">
@@ -14,28 +9,24 @@
           {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
           <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class="w-full h-full object-center object-cover group-hover:opacity-75">
         </div>
-        <h3 class="mt-4 text-sm text-gray-700">
+        <h3 class="mt-4 text-lg text-custom-grayBackground">
           {{ product.title | capitalize }}
         </h3>
-        <p class="mt-1 text-lg font-medium text-gray-900"> 
+        {% if product.available %}
+        <p class="mt-1 text-base font-medium text-custom-pink"> 
           {{ product.price_max | money }}
         </p>
+        {% else %}
+        <p class="mt-1 text-base font-medium text-red-600"> 
+          Epuisé
+        </p>
+        {% endif %}
+        
       </a>
       {% endfor %}
-    
-    
-      <!-- More products... -->
-    </div>
-    
+    </div>  
   </div>
-  <div class="text-center mb-4">
-    {% if paginate.pages > 1 %}
-    <span class="bg-red-300">
-      {{ paginate | default_pagination  }}
-    </span>
-    
-  {% endif %}
-{% endpaginate %}
-  </div>
- 
+ {% render 'pagination', pagination: paginate %}
+
 </div>
+{% endpaginate %}
