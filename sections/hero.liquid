@@ -17,12 +17,12 @@
         <p class="mb-8 text-base leading-relaxed text-custom-whitetext ">{{ section.settings.description }}</p>
         <div class="flex w-full justify-center">
 
-         <a href="{{ section.settings.button_link }}"><button class="relative text-sm bg-custom-pink text-center  text-custom-whitetext uppercase hover:bg-custom-grayBackground transition duration-200    font-heading rounded-md py-6 px-9 xl:text-base xl:leading-none  xl:py-6 xl:px-9 lg:px-9 lg:py-4 md:text-xl md:px-5 sm:py-4 sm:px-5   "><img class="absolute -top-5 -left-5 w-12 flower-anim" src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" alt="flower">VOIR LA COLLECTION</button></a>
+         <a href="{{ section.settings.button_link }}"><button class="relative text-sm bg-custom-pink text-center  text-custom-whitetext uppercase hover:bg-custom-grayBackground transition duration-200    font-heading rounded-md py-6 px-9 xl:text-base xl:leading-none  xl:py-6 xl:px-9 lg:px-9 lg:py-4 md:text-base md:px-5 sm:py-4 sm:px-5   "><img class="absolute -top-5 -left-5 w-12 flower-anim" src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" alt="flower">VOIR LA COLLECTION</button></a>
           
         </div>
       </div>
     </div>
-    <div class="test">
+    <div class="flower_banner">
         <span>FLEUR&nbsp; </span>
         <span>FLEUR&nbsp; </span>
         <span>FLEUR&nbsp; </span>
@@ -39,7 +39,7 @@
         {
             "type": "image_picker",
             "id": "image",
-            "label": "Image de fond"
+            "label": "Bannière"
         },
         {
             "type": "url",
@@ -54,25 +54,24 @@
         {
             "type": "text",
             "id": "title",
-            "default": "Example Heading",
+            "default": "VOIR LA COLLECTION",
             "label": "Titre du hero"
         },
         {
             "type": "text",
             "id": "description",
-            "default": "texte mais tu n'es pas obliger d'en mettre",
             "label": "Petit texte si tu souhaites en mettre un"
         },
         {
             "type": "text",
             "id": "button_label",
             "default": "Button",
-            "label": "Heading Button Label"
+            "label": "Texte du button"
         },
         {
             "type": "url",
             "id": "button_link",
-            "label": "Heading Button Link"
+            "label": "Lien du bouton"
         }
     ],
     "presets": [
