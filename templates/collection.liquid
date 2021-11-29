@@ -1,10 +1,10 @@
 
 
 {% paginate collection.products by 10 %}
-<div class="bg-custom-whitetext">
-  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -left-44 w-80 object-contain  " alt="flowers">
-  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute -right-44 -bottom-56 object-contain w-80" alt="flowers">
-  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-5xl lg:px-8">
+<div class="bg-custom-whitetext overflow-hidden">
+  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute hidden -left-44 w-80 object-contain  " alt="flowers">
+  <img src="https://cdn.shopify.com/s/files/1/0607/6163/7097/files/BG.png?v=1636389553" class="opacity-50 absolute hidden -right-44 -bottom-56 object-contain w-80" alt="flowers">
+  <div class="max-w-2xl mx-auto py-16 px-12 sm:py-24 sm:px-6 lg:max-w-5xl lg:px-8">
     <h2 class=" text-xl mb-4 text-custom-grayBackground">{{ collection.title | capitalize }}</h2>
 
     <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-10"  >
@@ -17,8 +17,8 @@
         <h3 class="mt-4 text-sm text-gray-700">
           {{ product.title | capitalize }}
         </h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">
-          {{ product.price | money_without_trailing_zeros }}
+        <p class="mt-1 text-lg font-medium text-gray-900"> 
+          {{ product.price_max | money }}
         </p>
       </a>
       {% endfor %}
@@ -31,7 +31,7 @@
   <div class="text-center mb-4">
     {% if paginate.pages > 1 %}
     <span class="bg-red-300">
-      {{ paginate | default_pagination c }}
+      {{ paginate | default_pagination  }}
     </span>
     
   {% endif %}
